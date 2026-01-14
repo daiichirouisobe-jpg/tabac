@@ -8,7 +8,7 @@
   <style>
     body {
       margin: 0;
-      font-family: 'Noto Sans JP', sans-serif;
+      font-family: "Hiragino Mincho ProN", "Yu Mincho", "MS Mincho", serif;
       background: #111;
       color: #eee;
     }
@@ -41,12 +41,12 @@
 
     .hero-text {
       position: absolute;
-      top: 50%; left: 50%;
+      top: 60%; left: 50%;
       transform: translate(-50%, -50%);
       text-align: center;
       z-index: 5;
-      font-size: 32px;
-      color: #d4af37; /* ゴールド */
+      font-size: 48px;
+      color: #aaaaaa;
     }
 
     section {
@@ -71,8 +71,8 @@
     }
 
     .navbar {
-      position: fixed;
-      top: 0;
+      /* position: fixed; */
+      /* top: 0; */
       width: 100%;
       background: rgba(0,0,0,0.7);
       padding: 10px 20px;
@@ -84,17 +84,55 @@
     }
 
     .navbar a {
-      color: #eee;
+      color: #f5f5f5;
       text-decoration: none;
-      padding: 8px 16px;
-      border-radius: 4px;
-      background: #333;
+      padding: 10px 20px;
+      border-radius: 6px;
+      background: linear-gradient(145deg, #222, #111);
+      border: 3px solid #444;
+      letter-spacing: 2px;
+      font-size: 18px;
       transition: 0.3s;
     }
 
     .navbar a:hover {
-      background: #555;
+      background: linear-gradient(145deg, #333, #222);
+      border-color: #d4af37; /* ゴールド */
+      color: #d4af37;
     }
+
+
+.tel-btn {
+  display: inline-block;
+  padding: 14px 28px;
+  background: #444;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 18px;
+  letter-spacing: 2px;
+  transition: 0.3s;
+}
+
+.tel-btn:hover {
+  background: #666;
+}
+
+.line-btn {
+  display: inline-block;
+  padding: 14px 28px;
+  background: #06c755;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 18px;
+  letter-spacing: 2px;
+  transition: 0.3s;
+}
+
+.line-btn:hover {
+  background: #0be068;
+}
 
     iframe {
       width: 100%;
@@ -111,21 +149,45 @@
       color: #d4af37; /* ゴールド */
       text-shadow: 0 0 10px rgba(212,175,55,0.4);
     }
-  </style>
-</head>
-<body>
-<div class="navbar">
-  <a href="menu.html">メニュー</a>
-  <a href="reserve.html">予約</a>
-  <a href="https://maps.google.com/?q=住所">MAP</a>
-</div>
 
-  <header>
+    p {
+      font-size: 32px;
+      color: #aaaaaa;
+    }
+
+#flipbook {
+  width: 800px;
+  height: 500px;
+  margin: 40px auto;
+}
+
+#flipbook img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 900px) {
+  #flipbook {
+    width: 90%;
+    height: 400px;
+  }
+}
+
+  </style>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/turn.js/3/turn.min.js"></script>
+</head>
+
+
+<body>
+
+<header>
     <img src="images/logo.jpg" alt="TABAC" style="height:100px;">
 </header>
 
 <div class="hero">
-  <div class="hero-text">落ち着いた空間で楽しむ大人の時間<br>
+  <div class="hero-text">落ち着いた大人の空間と時間<br>
                          ビリヤード<br>
                          ダーツ<br>
                          ウイスキー<br>
@@ -133,27 +195,33 @@
   </div>
 </div>
 
+<div class="navbar">
+  <a href="menu.html">メニュー</a>
+  <a href="reserve.html">予約</a>
+  <a href="https://maps.google.com/?q=住所">MAP</a>
+</div>
+
 <section>
   <h1>About</h1>
   <p>
-    ビリヤード・ダーツで遊ぶ<br>
+    ビリヤードで遊ぶ<br>
+    ダーツで遊ぶ<br>
     カクテル、ウイスキーなど100種類を超えるお酒を楽しむ<br>
-    落ち着いた照明のテーブル席で静かな時間を<br>
-    カウンターでイケメンマスターとのお話も<br>
+    落ち着いた照明のテーブル席で楽しい仲間と<br>
+    カウンターでイケメンマスターとのお話はいかが？<br>
+    <br>
+    ご予約いただければ、お昼の時間帯でも営業いたします。<br>
+    結婚式の２次会や、友達同士のパティーにもどうぞ。<br>
+    ご相談・ご予約はこちらから。<br>
   </p>
 </section>
 
-<section style="padding: 40px 20px;">
-  <h1>Access</h1>
-  <p>福岡県福岡市中央区春吉2-10-7 アンプルールベトンROSSO 2F</p>
-  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11844.377656737295!2d130.3884283378514!3d33.5867203020067!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x354191973131a97d%3A0x460d866424f1286b!2sTABAC!5e0!3m2!1sja!2sjp!4v1768233280460!5m2!1sja!2sjp"
-          width="100%"
-          height="450"
-          style="border:0;"
-          allowfullscreen=""
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade">
-  </iframe>
+<section>
+  <h1>Opening hours</h1>
+  <p>
+    営業時間：19:00 - 03:00<br>
+    休日：不定（カレンダーでご確認ください）<br>
+  </p>
 </section>
 
 <section>
@@ -166,5 +234,57 @@
           scrolling="no">
   </iframe>
 </section>
+
+<section style="padding: 40px 20px;">
+  <h1>Access</h1>
+  <p>福岡県福岡市中央区春吉2-10-7 アンプルールベトンROSSO 2F<br>
+  <a href="tel:090-1111-2222" class="tel-btn">TEL : 090-1111-2222</a>
+  </p>
+  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11844.377656737295!2d130.3884283378514!3d33.5867203020067!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x354191973131a97d%3A0x460d866424f1286b!2sTABAC!5e0!3m2!1sja!2sjp!4v1768233280460!5m2!1sja!2sjp"
+          width="100%"
+          height="450"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
+</section>
+
+<section class="reserve">
+  <h1>Reservation</h1>
+  <p>ご予約は LINE またはお電話にて承っております。</p>
+
+  <div class="reserve-buttons">
+    <a href="https://lin.ee/あなたのLINEリンク" class="line-btn">LINEで予約</a>
+    <a href="tel:090-xxxx-xxxx" class="tel-btn">電話で予約</a>
+  </div>
+</section>
+
+<section style="padding: 40px 20px;">
+  <h1>Menu</h1>
+  <div id="flipbook">
+    <div><img src="images/menu01.jpg"></div>
+    <div><img src="images/menu02.jpg"></div>
+    <div><img src="images/menu03.jpg"></div>
+    <div><img src="images/menu04.jpg"></div>
+    <div><img src="images/menu05.jpg"></div>
+    <div><img src="images/menu06.jpg"></div>
+    <div><img src="images/menu07.jpg"></div>
+    <div><img src="images/menu08.jpg"></div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    $("#flipbook").turn({
+      width: 800,
+      height: 500,
+      autoCenter: true,
+      elevation: 50,
+      gradients: true
+    });
+  });
+</script>
+
 </body>
 </html>
