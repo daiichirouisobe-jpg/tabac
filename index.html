@@ -141,7 +141,7 @@
     }
     
     h1 {
-      font-size: 48px;
+      /* font-size: 48px; */
       font-weight: 700;
       text-align: left;
       margin-bottom: 20px;
@@ -151,10 +151,29 @@
     }
 
     p {
-      font-size: 32px;
+      /* font-size: 32px; */
       color: #aaaaaa;
     }
+/* PC */
+@media (min-width: 900px) {
+  h1 {
+    font-size: 48px;
+  }
+  p {
+    font-size: 28px;
+  }
+}
 
+/* スマホ */
+@media (max-width: 899px) {
+  h1 {
+    font-size: 32px;
+  }
+  p {
+    font-size: 18px;
+    line-height: 1.6;
+  }
+}
   </style>
 </head>
 
@@ -166,7 +185,7 @@
 </header>
 
 <div class="hero">
-  <div class="hero-text">大人の空間と時間で遊びませんか？<br>
+  <div class="hero-text">大人の空間で遊びませんか？<br>
                          ビリヤード<br>
                          ダーツ<br>
                          ウイスキー<br>
