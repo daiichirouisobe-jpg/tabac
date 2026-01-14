@@ -155,28 +155,7 @@
       color: #aaaaaa;
     }
 
-#flipbook {
-  width: 800px;
-  height: 500px;
-  margin: 40px auto;
-}
-
-#flipbook img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-@media (max-width: 900px) {
-  #flipbook {
-    width: 90%;
-    height: 400px;
-  }
-}
-
   </style>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="js/turn.min.js"></script>
 </head>
 
 
@@ -262,29 +241,19 @@
 
 <section style="padding: 40px 20px;">
   <h1>Menu</h1>
-  <div id="flipbook">
-    <div><img src="images/menu01.jpg"></div>
-    <div><img src="images/menu02.jpg"></div>
-    <div><img src="images/menu03.jpg"></div>
-    <div><img src="images/menu04.jpg"></div>
-    <div><img src="images/menu05.jpg"></div>
-    <div><img src="images/menu06.jpg"></div>
-    <div><img src="images/menu07.jpg"></div>
-    <div><img src="images/menu08.jpg"></div>
-  </div>
+  <p>
+    Beer \700～<br>
+    Spirit \650～<br>
+    Brandy \750～<br>
+    Whisky \650～<br>
+    Cocktail \750～<br>
+    Sour \700～<br>
+    SoftDrink \600～<br>
+    food \600～<br>
+    <br>
+    Billiards: ¥400 / 30 min / person
+  </p>
 </section>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    $("#flipbook").turn({
-      width: 800,
-      height: 500,
-      autoCenter: true,
-      elevation: 50,
-      gradients: true
-    });
-  });
-</script>
 
 </body>
 </html>
