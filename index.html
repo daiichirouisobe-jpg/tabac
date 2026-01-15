@@ -133,6 +133,47 @@
       background: #0be068;
     }
 
+    #custom-calendar {
+      width: 100%;
+      max-width: 900px;
+      margin: 20px auto;
+      background: #000;
+      border: 2px solid #d4af37;
+      border-radius: 12px;
+      padding: 20px;
+      color: #eee;
+      box-shadow: 0 0 20px rgba(212,175,55,0.3);
+    }
+
+    .calendar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: #d4af37;
+    }
+
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 10px;
+    }
+
+    .calendar-cell {
+      padding: 12px;
+      text-align: center;
+      background: #111;
+      border-radius: 6px;
+      font-size: 20px;
+    }
+
+    .calendar-cell.today {
+      background: #d4af37;
+      color: #000;
+      font-weight: bold;
+    }
+
     iframe {
       width: 100%;
       height: 400px;
@@ -206,6 +247,43 @@
 
 
 <body>
+<script>
+function renderCalendar() {
+  const calendar = document.getElementById("custom-calendar");
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = now.getMonth();
+
+  const firstDay = new Date(year, month, 1).getDay();
+  const lastDate = new Date(year, month + 1, 0).getDate();
+
+  let html = `
+    <div class="calendar-header">
+      <span>${year}年 ${month + 1}月</span>
+    </div>
+    <div class="calendar-grid">
+      <div>日</div><div>月</div><div>火</div><div>水</div><div>木</div><div>金</div><div>土</div>
+  `;
+
+  for (let i = 0; i < firstDay; i++) {
+    html += `<div class="calendar-cell"></div>`;
+  }
+
+  for (let day = 1; day <= lastDate; day++) {
+    const isToday =
+      day === now.getDate() &&
+      month === now.getMonth() &&
+      year === now.getFullYear();
+
+    html += `<div class="calendar-cell ${isToday ? "today" : ""}">${day}</div>`;
+  }
+
+  html += `</div>`;
+  calendar.innerHTML = html;
+}
+
+document.addEventListener("DOMContentLoaded", renderCalendar);
+</script>
 
 <header>
     <img src="images/logo.jpg" alt="TABAC">
@@ -232,13 +310,11 @@
   <p>
     ビリヤードで遊ぶ<br>
     ダーツで遊ぶ<br>
-    カクテル、ウイスキーなど100種類を超えるお酒を楽しむ<br>
-    落ち着いた照明のテーブル席で楽しい仲間と<br>
-    カウンターでイケメンマスターとのお話はいかが？<br>
+    お酒を楽しむ<br>
+    そんな時間を準備してお待ちしております。<br>
     <br>
     ご予約いただければ、お昼の時間帯でも営業いたします。<br>
-    結婚式の２次会や、友達同士のパティーにもどうぞ。<br>
-    ご相談・ご予約はこちらから。<br>
+    結婚式の２次会や、誕生パーティーなどにもご利用いただけます。<br>
   </p>
 </section>
 
@@ -247,6 +323,11 @@
   <p>
     夜：BAR営業（18:00〜03:00）<br>
     昼：完全予約制<br>
+    <br>
+    休日：不定（カレンダーでご確認ください）<br>
+    <section id="calendar">
+      <div id="custom-calendar"></div>
+    </section>
     <br>
     【昼営業について】<br>
      　　昼間は予約制にて営業しております。<br>
@@ -287,17 +368,6 @@
      <br>
      ※内容によりお受けできない場合があります。<br>
   </p>
-</section>
-
-<section id="cslendar">
-  <h1>Calendar</h1>
-  <iframe src="https://calendar.google.com/calendar/embed?src=daiichirou.isobe%40gmail.com&ctz=UTC"
-          style="border:0;"
-          width="100%"
-          height="600"
-          frameborder="0"
-          scrolling="no">
-  </iframe>
 </section>
 
 <section id="access" style="padding: 40px 20px;">
