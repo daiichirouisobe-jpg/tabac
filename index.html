@@ -101,38 +101,37 @@
       color: #d4af37;
     }
 
+    .tel-btn {
+      display: inline-block;
+      padding: 14px 28px;
+      background: #444;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 18px;
+      letter-spacing: 2px;
+      transition: 0.3s;
+    }
 
-.tel-btn {
-  display: inline-block;
-  padding: 14px 28px;
-  background: #444;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 6px;
-  font-size: 18px;
-  letter-spacing: 2px;
-  transition: 0.3s;
-}
+    .tel-btn:hover {
+      background: #666;
+    }
 
-.tel-btn:hover {
-  background: #666;
-}
+    .line-btn {
+      display: inline-block;
+      padding: 14px 28px;
+      background: #06c755;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 18px;
+      letter-spacing: 2px;
+      transition: 0.3s;
+    }
 
-.line-btn {
-  display: inline-block;
-  padding: 14px 28px;
-  background: #06c755;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 6px;
-  font-size: 18px;
-  letter-spacing: 2px;
-  transition: 0.3s;
-}
-
-.line-btn:hover {
-  background: #0be068;
-}
+    .line-btn:hover {
+      background: #0be068;
+    }
 
     iframe {
       width: 100%;
@@ -154,46 +153,53 @@
       /* font-size: 32px; */
       color: #aaaaaa;
     }
-/* PC */
-@media (min-width: 900px) {
-  .hero-text {
-    font-size: 48px;
-  }
-  .navbar {
-    gap: 20px;
-  }
-  .navbar a {
-    padding: 10px 20px;
-    font-size: 18px;
-  }
-  h1 {
-    font-size: 48px;
-  }
-  p {
-    font-size: 28px;
-  }
-}
+    
+    /* PC */
+    @media (min-width: 900px) {
+      .hero-text {
+        font-size: 48px;
+      }
+      .navbar {
+        gap: 20px;
+      }
+      .navbar a {
+        padding: 10px 20px;
+        font-size: 18px;
+      }
+      h1 {
+        font-size: 48px;
+      }
+      p {
+        font-size: 28px;
+      }
+      header img {
+        height: 100px;
+      }
+    }
 
-/* スマホ */
-@media (max-width: 899px) {
-  .hero-text {
-    font-size: 24px;
-  }
-  .navbar {
-    gap: 5px;
-  }
-  .navbar a {
-    padding: 2px 3px;
-    font-size: 12px;
-  }
-  h1 {
-    font-size: 32px;
-  }
-  p {
-    font-size: 18px;
-    line-height: 1.6;
-  }
-}
+    /* スマホ */
+    @media (max-width: 899px) {
+      .hero-text {
+        font-size: 24px;
+      }
+      .navbar {
+        gap: 5px;
+      }
+      .navbar a {
+        padding: 2px 3px;
+        font-size: 12px;
+      }
+      h1 {
+        font-size: 32px;
+      }
+      p {
+        font-size: 18px;
+        line-height: 1.6;
+      }
+      header img {
+        height: 60px;
+      }
+    }
 
   </style>
 </head>
@@ -202,7 +208,7 @@
 <body>
 
 <header>
-    <img src="images/logo.jpg" alt="TABAC" style="height:100px;">
+    <img src="images/logo.jpg" alt="TABAC">
 </header>
 
 <div class="hero">
@@ -239,8 +245,47 @@
 <section id="hours">
   <h1>Opening hours</h1>
   <p>
-    営業時間：19:00 - 03:00<br>
-    休日：不定（カレンダーでご確認ください）<br>
+    夜：BAR営業（18:00〜03:00）<br>
+    昼：完全予約制<br>
+    <br>
+    【昼営業について】<br>
+     　　昼間は予約制にて営業しております。<br>
+     　　ご利用内容・人数・時間を事前にご相談ください。<br>
+    <br>
+    【ビリヤード教室】<br>
+     　　昼にビリヤード初心者・初級者の方限定で、<br>
+     　　基礎から学べる少人数制レッスンを行っています。<br>
+     <br>
+     　　「これから始めたい」<br>
+     　　「自己流から卒業したい」<br>
+     　　そんな方に向けた内容です。<br>
+     <br>
+    【対象】<br>
+     　　・ビリヤード初心者<br>
+     　　・初級者の方<br>
+     <br>
+     　　※中級者以上の方、通常練習目的でのご利用は<br>
+     　　　夜の通常営業をご利用ください。<br>
+     <br>
+    【レッスン内容】<br>
+     　　・基本フォーム<br>
+     　　・キューの持ち方<br>
+     　　・狙い方・構え方<br>
+     　　・簡単なルール説明<br>
+     　　・実践練習<br>
+     <br>
+    【レッスン料金】<br>
+     　　・お一人様：〇〇円／〇〇分<br>
+     <br>
+     ※詳細はご予約時にご案内します。<br>
+     　昼間のビリヤードレッスンは完全予約制です。<br>
+     　以下の内容をお知らせください。<br>
+     　　　・お名前<br>
+     　　　・人数<br>
+     　　　・希望日時<br>
+     　　　・ビリヤード経験（未経験／少し経験あり）<br>
+     <br>
+     ※内容によりお受けできない場合があります。<br>
   </p>
 </section>
 
@@ -283,14 +328,14 @@
 <section id="menu" style="padding: 40px 20px;">
   <h1>Menu</h1>
   <p>
-    Beer \700～<br>
-    Spirit \650～<br>
-    Brandy \750～<br>
-    Whisky \650～<br>
-    Cocktail \750～<br>
-    Sour \700～<br>
-    SoftDrink \600～<br>
-    food \600～<br>
+    Beer		\700～<br>
+    Spirit		\650～<br>
+    Brandy		\750～<br>
+    Whisky		\650～<br>
+    Cocktail	\750～<br>
+    Sour		\700～<br>
+    SoftDrink	\600～<br>
+    food		\600～<br>
     <br>
     Billiards: ¥400 / 30 min / person<br>
     <br>
