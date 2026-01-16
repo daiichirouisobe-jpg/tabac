@@ -197,6 +197,44 @@
       line-height: 1.2;
     }
 
+.map-card {
+  background: #000;
+  border: 2px solid #d4af37;          /* ゴールド枠 */
+  border-radius: 12px;                /* 角丸 */
+  padding: 15px;                      /* 内側余白 */
+  box-shadow: 0 0 20px rgba(212,175,55,0.3);  /* ゴールドの光 */
+  max-width: 900px;
+  margin: 20px auto;
+}
+
+.map-card iframe {
+  border-radius: 8px;                 /* マップ自体も角丸に */
+  width: 100%;
+  height: 450px;
+}
+
+.menu-list {
+  margin-top: 20px;
+}
+
+.menu-item {
+  display: flex;
+  justify-content: space-between;
+  max-width: 400px; /* ← 幅を制限して距離を縮める */
+  border-bottom: 1px solid #333;
+  font-size: inherit; /* 親要素（＝pタグと同じ）を継承 */
+}
+
+.menu-name {
+  color: #d4af37; /* ゴールド */
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.menu-price {
+  color: #eee;
+}
+
     iframe {
       width: 100%;
       height: 400px;
@@ -230,6 +268,9 @@
         padding: 10px 20px;
         font-size: 18px;
       }
+      .menu-item {
+        font-size: 28px;
+      }
       h1 {
         font-size: 48px;
       }
@@ -252,6 +293,9 @@
       .navbar a {
         padding: 2px 3px;
         font-size: 12px;
+      }
+      .menu-item {
+        font-size: 28px;
       }
       h1 {
         font-size: 32px;
@@ -366,6 +410,7 @@
   <p>福岡県福岡市中央区春吉2-10-7 アンプルールベトンROSSO 2F<br>
   <a href="tel:090-1111-2222" class="tel-btn">TEL : 090-1111-2222</a>
   </p>
+  <div class="map-card">
   <iframe 
     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11844.377656737295!2d130.3884283378514!3d33.5867203020067!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x354191973131a97d%3A0x460d866424f1286b!2sTABAC!5e0!3m2!1sja!2sjp!4v1768233280460!5m2!1sja!2sjp"
     width="100%"
@@ -375,6 +420,7 @@
     loading="lazy"
     referrerpolicy="no-referrer-when-downgrade">
   </iframe>
+  </div>
 </section>
 
 <section id="reservation" class="reserve">
@@ -389,37 +435,47 @@
 
 <section id="menu" style="padding: 40px 20px;">
   <h1>Menu</h1>
-  <p>
-    Beer		\700～<br>
-    Spirit		\650～<br>
-    Brandy		\750～<br>
-    Whisky		\650～<br>
-    Cocktail	\750～<br>
-    Sour		\700～<br>
-    SoftDrink	\600～<br>
-    food		\600～<br>
-    <br>
-    Billiards: ¥400 / 30 min / person<br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-  </p>
-</section>
 
+  <div class="menu-list">
+    <div class="menu-item">
+      <span class="menu-name">Beer</span>
+      <span class="menu-price">¥700〜</span>
+    </div>
+    <div class="menu-item">
+      <span class="menu-name">Spirit</span>
+      <span class="menu-price">¥650〜</span>
+    </div>
+    <div class="menu-item">
+      <span class="menu-name">Brandy</span>
+      <span class="menu-price">¥750〜</span>
+    </div>
+    <div class="menu-item">
+      <span class="menu-name">Whisky</span>
+      <span class="menu-price">¥650〜</span>
+    </div>
+    <div class="menu-item">
+      <span class="menu-name">Cocktail</span>
+      <span class="menu-price">¥750〜</span>
+    </div>
+    <div class="menu-item">
+      <span class="menu-name">Sour</span>
+      <span class="menu-price">¥700〜</span>
+    </div>
+    <div class="menu-item">
+      <span class="menu-name">SoftDrink</span>
+      <span class="menu-price">¥600〜</span>
+    </div>
+    <div class="menu-item">
+      <span class="menu-name">Food</span>
+      <span class="menu-price">¥600〜</span>
+    </div>
+
+    <div class="menu-item">
+      <span class="menu-name">Billiards</span>
+      <span class="menu-price">¥400 / 30 min / person</span>
+    </div>
+  </div>
+
+</section>
 </body>
 </html>
