@@ -231,12 +231,11 @@
     }
 
     .calendar-cell.today {
-      background: #222;        /* 黒に近いグレー */
-      border: 2px solid #d4af37;
+      background: #444;        /* ← 今日だけ背景を少し明るく */
       color: #d4af37;          /* ゴールド文字 */
       font-weight: bold;
+      border: none;            /* ← 枠線を消す */
     }
-
     .event {
       margin-top: 6px;
       font-size: 12px;
@@ -344,17 +343,44 @@
       .menu-item {
         font-size: 28px;
       }
+
+      .mobile-break {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+      }
+
+      .mobile-break .menu-price {
+        align-self: flex-end;   /* ← これで右寄せになる */
+        text-align: right;
+        width: 100%;            /* ← 行全体を使って右寄せ */
+      }
+
+      .calendar-grid {
+         gap: 4px; /* ← 隙間を小さくする */
+       }
+
+       .calendar-cell {
+         padding: 6px; /* ← セルの余白を減らす */
+         font-size: 14px; /* ← 文字サイズを小さくする */
+       }
+
+       .calendar-header {
+         font-size: 20px; /* ← タイトルも少し小さく */
+       }
+
+
       h1 {
         font-size: 32px;
       }
       p {
-        font-size: 12px;
+        font-size: 18px;
         line-height: 1.6;
       }
       header img {
         height: 60px;
       }
-    }
+  }
 
   </style>
 </head>
@@ -524,8 +550,7 @@
       <span class="menu-name">Food</span>
       <span class="menu-price">¥600〜</span>
     </div>
-
-    <div class="menu-item">
+    <div class="menu-item mobile-break">
       <span class="menu-name">Billiards</span>
       <span class="menu-price">¥400 / 30 min / person</span>
     </div>
