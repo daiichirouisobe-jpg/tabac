@@ -154,6 +154,21 @@
       color: #d4af37;
     }
 
+    .calendar-header button {
+      background: #111;
+      color: #d4af37;
+      border: 1px solid #d4af37;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 20px;
+    }
+
+    .calendar-header button:hover {
+      background: #d4af37;
+      color: #000;
+    }
+
     .calendar-grid {
       display: grid;
       grid-template-columns: repeat(7, 1fr);
@@ -169,9 +184,17 @@
     }
 
     .calendar-cell.today {
-      background: #d4af37;
-      color: #000;
+      background: #222;        /* 黒に近いグレー */
+      border: 2px solid #d4af37;
+      color: #d4af37;          /* ゴールド文字 */
       font-weight: bold;
+    }
+
+    .event {
+      margin-top: 6px;
+      font-size: 12px;
+      color: #d4af37;
+      line-height: 1.2;
     }
 
     iframe {
@@ -247,43 +270,8 @@
 
 
 <body>
-<script>
-function renderCalendar() {
-  const calendar = document.getElementById("custom-calendar");
-  const now = new Date();
-  const year = now.getFullYear();
-  const month = now.getMonth();
 
-  const firstDay = new Date(year, month, 1).getDay();
-  const lastDate = new Date(year, month + 1, 0).getDate();
-
-  let html = `
-    <div class="calendar-header">
-      <span>${year}年 ${month + 1}月</span>
-    </div>
-    <div class="calendar-grid">
-      <div>日</div><div>月</div><div>火</div><div>水</div><div>木</div><div>金</div><div>土</div>
-  `;
-
-  for (let i = 0; i < firstDay; i++) {
-    html += `<div class="calendar-cell"></div>`;
-  }
-
-  for (let day = 1; day <= lastDate; day++) {
-    const isToday =
-      day === now.getDate() &&
-      month === now.getMonth() &&
-      year === now.getFullYear();
-
-    html += `<div class="calendar-cell ${isToday ? "today" : ""}">${day}</div>`;
-  }
-
-  html += `</div>`;
-  calendar.innerHTML = html;
-}
-
-document.addEventListener("DOMContentLoaded", renderCalendar);
-</script>
+<script src="js/tabac.js"></script>
 
 <header>
     <img src="images/logo.jpg" alt="TABAC">
@@ -325,9 +313,11 @@ document.addEventListener("DOMContentLoaded", renderCalendar);
     昼：完全予約制<br>
     <br>
     休日：不定（カレンダーでご確認ください）<br>
+    </p>
     <section id="calendar">
       <div id="custom-calendar"></div>
     </section>
+    <p>
     <br>
     【昼営業について】<br>
      昼間は予約制にて営業しております。<br>
@@ -376,13 +366,14 @@ document.addEventListener("DOMContentLoaded", renderCalendar);
   <p>福岡県福岡市中央区春吉2-10-7 アンプルールベトンROSSO 2F<br>
   <a href="tel:090-1111-2222" class="tel-btn">TEL : 090-1111-2222</a>
   </p>
-  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11844.377656737295!2d130.3884283378514!3d33.5867203020067!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x354191973131a97d%3A0x460d866424f1286b!2sTABAC!5e0!3m2!1sja!2sjp!4v1768233280460!5m2!1sja!2sjp"
-          width="100%"
-          height="450"
-          style="border:0;"
-          allowfullscreen=""
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade">
+  <iframe 
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11844.377656737295!2d130.3884283378514!3d33.5867203020067!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x354191973131a97d%3A0x460d866424f1286b!2sTABAC!5e0!3m2!1sja!2sjp!4v1768233280460!5m2!1sja!2sjp"
+    width="100%"
+    height="450"
+    style="border:0;"
+    allowfullscreen=""
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade">
   </iframe>
 </section>
 
