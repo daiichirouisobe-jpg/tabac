@@ -1,6 +1,6 @@
 // ====== 設定 ======
-const CALENDAR_ID = "daiichirou.isobe@gmail.com";
-const API_KEY = "AIzaSyDJi2hS06OAfLSnT2li1b-L5bfF3kePWno";   // ← あとで本物に置き換える
+const CALENDAR_ID = "73332b7acc518822df0bf29e7b5bd19e4ef6dfa7475806a550ab533ba239749d@group.calendar.google.com";
+const API_KEY = "AIzaSyDJi2hS06OAfLSnT2li1b-L5bfF3kePWno";
 
 let currentYear = new Date().getFullYear();
 let currentMonth = new Date().getMonth();
@@ -131,4 +131,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // 5〜10秒ごとに切り替え
   setInterval(nextSlide, 7000);
+});
+
+// ===== ページトップボタン =====
+const backToTop = document.getElementById("backToTop");
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 50) {
+    backToTop.style.display = "block";
+  } else {
+    backToTop.style.display = "none";
+  }
+});
+
+backToTop.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
 });
