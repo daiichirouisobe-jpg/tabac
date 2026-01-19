@@ -1,152 +1,445 @@
-// ====== 設定 ======
-const CALENDAR_ID = "73332b7acc518822df0bf29e7b5bd19e4ef6dfa7475806a550ab533ba239749d@group.calendar.google.com";
-const API_KEY = "AIzaSyDJi2hS06OAfLSnT2li1b-L5bfF3kePWno";
+    body {
+      margin: 0;
+      font-family: "Hiragino Mincho ProN", "Yu Mincho", "MS Mincho", serif;
+      background: #111;
+      color: #eee;
+    }
 
-let currentYear = new Date().getFullYear();
-let currentMonth = new Date().getMonth();
+    header {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      padding: 0px;
+      text-align: center;
+      font-size: 24px;
+      color: #fff;
+      z-index: 10;
+      top: 60px;
+    }
 
-// ====== Google カレンダーから予定を取得 ======
-async function fetchEvents(year, month) {
-  const timeMin = new Date(year, month, 1).toISOString();
-  const timeMax = new Date(year, month + 1, 0, 23, 59, 59).toISOString();
+    .hero {
+      position: relative;
+      height: 70vh;
+      background: url('../images/inside_billiards.jpg') center/cover no-repeat;
+    }
 
-  const url =
-    `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(CALENDAR_ID)}/events` +
-    `?key=${API_KEY}&timeMin=${timeMin}&timeMax=${timeMax}&singleEvents=true&orderBy=startTime`;
+    .hero::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.4);
+    }
 
-  try {
-    const res = await fetch(url);
-    const data = await res.json();
+    .hero-text {
+      position: absolute;
+      top: 60%; left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      z-index: 5;
+      /* font-size: 48px; */
+      color: #aaaaaa;
+      /* color: #F0C63E; */
+      font-weight: 900;
+      text-shadow:
+         2px  2px 4px #444,
+        -2px  2px 4px #444,
+         2px -2px 4px #444,
+        -2px -2px 4px #444;
+      font-family: "Yu Gothic", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+    }
 
-    if (!data.items) return [];
-
-    return data.items.map(event => {
-      const start = event.start.date || event.start.dateTime;
-      return {
-        title: event.summary || "予定",
-        date: start
-      };
-    });
-
-  } catch (e) {
-    console.error("Googleカレンダー取得エラー:", e);
-    return [];
-  }
+.hero-slider {
+  position: relative;
+  width: 100%;
+  height: 70vh;
+  overflow: hidden;
 }
 
-// ====== カレンダー描画 ======
-async function renderCalendar(year, month) {
-  const calendar = document.getElementById("custom-calendar");
-  const now = new Date();
-
-  const firstDay = new Date(year, month, 1).getDay();
-  const lastDate = new Date(year, month + 1, 0).getDate();
-
-  // Googleカレンダーの予定を取得
-  const events = await fetchEvents(year, month);
-
-  let html = `
-    <div class="calendar-header">
-      <button onclick="changeMonth(-1)">←</button>
-      <span>${year}年 ${month + 1}月</span>
-      <button onclick="changeMonth(1)">→</button>
-    </div>
-    <div class="calendar-grid">
-      <div>日</div><div>月</div><div>火</div><div>水</div><div>木</div><div>金</div><div>土</div>
-  `;
-
-  // 空白セル
-  for (let i = 0; i < firstDay; i++) {
-    html += `<div class="calendar-cell"></div>`;
-  }
-
-  // 日付セル
-  for (let day = 1; day <= lastDate; day++) {
-    const dateStr = `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
-
-    const isToday =
-      day === now.getDate() &&
-      month === now.getMonth() &&
-      year === now.getFullYear();
-
-    // 該当日のイベントを抽出
-    const todaysEvents = events.filter(e => e.date.startsWith(dateStr));
-
-    html += `
-      <div class="calendar-cell ${isToday ? "today" : ""}">
-        ${day}
-        ${todaysEvents
-          .map(ev => `<div class="event">${ev.title}</div>`)
-          .join("")}
-      </div>
-    `;
-  }
-
-  html += `</div>`;
-  calendar.innerHTML = html;
+.hero-slider .slide {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  width: 100%;
+  height: 100%;
+  transition: left 1s ease-in-out;
 }
 
-// ====== 月送り ======
-function changeMonth(offset) {
-  currentMonth += offset;
-  if (currentMonth < 0) {
-    currentMonth = 11;
-    currentYear--;
-  } else if (currentMonth > 11) {
-    currentMonth = 0;
-    currentYear++;
-  }
-  renderCalendar(currentYear, currentMonth);
+.hero-slider .slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-// ====== 初期表示 ======
-document.addEventListener("DOMContentLoaded", function () {
-  // カレンダー初期表示
-  renderCalendar(currentYear, currentMonth);
+.hero-slider .slide.active {
+  left: 0;
+}
 
-  // ===== スライダー =====
-  let currentSlide = 0;
-  const slides = document.querySelectorAll(".hero-slider .slide");
+.hero-slider .slide.prev {
+  left: -100%;
+}
 
-  if (slides.length === 0) return; // 念のため
+.hero-slider::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4); /* ← ここで暗さを調整 */
+  pointer-events: none; /* スライド操作の邪魔をしない */
+  z-index: 2;
+}
 
-  function showSlide(index) {
-    slides.forEach((slide, i) => {
-      slide.classList.remove("active", "prev");
-      if (i === index) {
-        slide.classList.add("active");
-      } else if (i === (index - 1 + slides.length) % slides.length) {
-        slide.classList.add("prev");
+.hero-slider .slide img {
+  position: relative;
+  z-index: 1;
+}
+
+    section {
+      padding: 40px 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .buttons a {
+      display: inline-block;
+      margin: 10px;
+      padding: 12px 24px;
+      background: #444;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: 0.3s;
+    }
+
+    .buttons a:hover {
+      background: #666;
+    }
+
+    .navbar {
+      /* position: fixed; */
+      /* top: 0; */
+      width: 100%;
+      background: rgba(0,0,0,0.7);
+      padding: 10px 20px;
+      display: flex;
+      justify-content: center;
+      /* gap: 20px; */
+      z-index: 30;
+      backdrop-filter: blur(6px);
+    }
+
+    .navbar a {
+      color: #f5f5f5;
+      text-decoration: none;
+      /* padding: 10px 20px; */
+      border-radius: 6px;
+      background: linear-gradient(145deg, #222, #111);
+      border: 3px solid #444;
+      letter-spacing: 2px;
+      /* font-size: 18px; */
+      transition: 0.3s;
+    }
+
+    .navbar a:hover {
+      background: linear-gradient(145deg, #333, #222);
+      border-color: #d4af37; /* ゴールド */
+      color: #d4af37;
+    }
+
+    .tel-btn {
+      display: inline-block;
+      padding: 14px 28px;
+      background: #444;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 18px;
+      letter-spacing: 2px;
+      transition: 0.3s;
+    }
+
+    .tel-btn:hover {
+      background: #666;
+    }
+
+    .line-btn {
+      display: inline-block;
+      padding: 14px 28px;
+      background: #06c755;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 18px;
+      letter-spacing: 2px;
+      transition: 0.3s;
+    }
+
+    .line-btn:hover {
+      background: #0be068;
+    }
+
+    #custom-calendar {
+      width: 80%;
+      max-width: 900px;
+      margin: 20px auto;
+      background: #000;
+      border: 2px solid #d4af37;
+      border-radius: 12px;
+      padding: 20px;
+      color: #eee;
+      box-shadow: 0 0 20px rgba(212,175,55,0.3);
+    }
+
+    .calendar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: #d4af37;
+    }
+
+    .calendar-header button {
+      background: #111;
+      color: #d4af37;
+      border: 1px solid #d4af37;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 20px;
+    }
+
+    .calendar-header button:hover {
+      background: #d4af37;
+      color: #000;
+    }
+
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 10px;
+    }
+
+    .calendar-cell {
+      padding: 12px;
+      text-align: center;
+      background: #111;
+      border-radius: 6px;
+      font-size: 20px;
+    }
+
+    .calendar-cell.today {
+      background: #444;        /* ← 今日だけ背景を少し明るく */
+      color: #d4af37;          /* ゴールド文字 */
+      font-weight: bold;
+      border: none;            /* ← 枠線を消す */
+    }
+    .event {
+      margin-top: 6px;
+      font-size: 12px;
+      color: #d4af37;
+      line-height: 1.2;
+    }
+
+.map-card {
+  background: #000;
+  border: 2px solid #d4af37;          /* ゴールド枠 */
+  border-radius: 12px;                /* 角丸 */
+  padding: 15px;                      /* 内側余白 */
+  box-shadow: 0 0 20px rgba(212,175,55,0.3);  /* ゴールドの光 */
+  max-width: 900px;
+  margin: 20px auto;
+}
+
+.map-card iframe {
+  border-radius: 8px;                 /* マップ自体も角丸に */
+  width: 100%;
+  height: 450px;
+}
+
+.menu-list {
+  margin-top: 20px;
+  margin-left: 2em;
+}
+
+.menu-item {
+  display: flex;
+  justify-content: space-between;
+  max-width: 600px; /* ← 幅を制限して距離を縮める */
+  border-bottom: 1px solid #333;
+  font-size: inherit; /* 親要素（＝pタグと同じ）を継承 */
+}
+
+.menu-name {
+  color: #C7A434; /* ゴールド */
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.menu-price {
+  /*color: #eee;*/
+  color: #aaaaaa;
+}
+.indent {
+  margin-left: 2em;
+}
+
+    iframe {
+      width: 100%;
+      height: 400px;
+      border: none;
+    }
+    
+    h1 {
+      font-weight: 700;
+      text-align: left;
+      margin-bottom: 20px;
+      letter-spacing: 4px;
+      color: #d4af37; /* ゴールド */
+      text-shadow: 0 0 10px rgba(212,175,55,0.4);
+    }
+
+    h2 {
+      font-weight: 700;
+      text-align: left;
+      margin-bottom: 20px;
+      letter-spacing: 4px;
+      color: #C7A434; /* ゴールド(暗め) */
+      text-shadow: 0 0 10px rgba(212,175,55,0.4);
+    }
+
+    h3 {
+      font-weight: 700;
+      text-align: left;
+      margin-bottom: 20px;
+      letter-spacing: 4px;
+      color: #C7A434; /* ゴールド(暗め) */
+      text-shadow: 0 0 10px rgba(212,175,55,0.4);
+    }
+
+    p {
+      color: #aaaaaa;
+    }
+
+    a {
+      color: #73FBFD;
+    }
+
+#backToTop {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #222;
+  color: #d4af37; /* ゴールド */
+  border: 2px solid #d4af37;
+  font-size: 24px;
+  cursor: pointer;
+  display: none; /* 最初は非表示 */
+  z-index: 999;
+  box-shadow: 0 0 10px rgba(212,175,55,0.4);
+  transition: 0.3s;
+}
+
+#backToTop:hover {
+  background: #333;
+  box-shadow: 0 0 14px rgba(212,175,55,0.6);
+}
+    
+    /* PC */
+    @media (min-width: 900px) {
+      .hero-text {
+        font-size: 36px;
       }
-    });
+      .navbar {
+        gap: 20px;
+      }
+      .navbar a {
+        padding: 10px 20px;
+        font-size: 18px;
+      }
+      .menu-item {
+        font-size: 28px;
+      }
+      h1 {
+        font-size: 48px;
+      }
+      h2 {
+        font-size: 32px;
+      }
+      h3 {
+        font-size: 28px;
+      }
+
+      p {
+        font-size: 28px;
+      }
+      header img {
+        height: 100px;
+      }
+    }
+
+    /* スマホ */
+    @media (max-width: 899px) {
+      .hero-text {
+        font-size: 24px;
+      }
+      .navbar {
+        gap: 5px;
+      }
+      .navbar a {
+        padding: 2px 3px;
+        font-size: 12px;
+      }
+      .menu-item {
+        font-size: 20px;
+      }
+
+      .mobile-break {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+      }
+
+      .mobile-break .menu-price {
+        align-self: flex-end;   /* ← これで右寄せになる */
+        text-align: right;
+        width: 100%;            /* ← 行全体を使って右寄せ */
+      }
+
+      .calendar-grid {
+         gap: 4px; /* ← 隙間を小さくする */
+       }
+
+       .calendar-cell {
+         padding: 6px; /* ← セルの余白を減らす */
+         font-size: 14px; /* ← 文字サイズを小さくする */
+       }
+
+       .calendar-header {
+         font-size: 20px; /* ← タイトルも少し小さく */
+       }
+
+
+      h1 {
+        font-size: 32px;
+      }
+      h2 {
+        font-size: 24px;
+      }
+      h3 {
+        font-size: 18px;
+      }
+      p {
+        font-size: 18px;
+        line-height: 1.6;
+      }
+      header img {
+        height: 60px;
+      }
   }
 
-  function nextSlide() {
-    currentSlide = (currentSlide + 1) % slides.length;
-    showSlide(currentSlide);
-  }
-
-  // 初期表示
-  showSlide(0);
-
-  // 5〜10秒ごとに切り替え
-  setInterval(nextSlide, 7000);
-});
-
-// ===== ページトップボタン =====
-const backToTop = document.getElementById("backToTop");
-
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 50) {
-    backToTop.style.display = "block";
-  } else {
-    backToTop.style.display = "none";
-  }
-});
-
-backToTop.addEventListener("click", () => {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
-});
