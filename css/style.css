@@ -9,7 +9,7 @@
       position: absolute;
       top: 0;
       width: 100%;
-      padding: 20px;
+      padding: 0px;
       text-align: center;
       font-size: 24px;
       color: #fff;
@@ -39,7 +39,7 @@
       z-index: 5;
       /* font-size: 48px; */
       color: #aaaaaa;
-      color: #F0C63E; 
+      /* color: #F0C63E; */
       font-weight: 900;
       text-shadow:
          2px  2px 4px #444,
@@ -261,6 +261,7 @@
 
 .menu-list {
   margin-top: 20px;
+  margin-left: 2em;
 }
 
 .menu-item {
@@ -272,13 +273,17 @@
 }
 
 .menu-name {
-  color: #d4af37; /* ゴールド */
+  color: #C7A434; /* ゴールド */
   font-weight: 600;
   letter-spacing: 1px;
 }
 
 .menu-price {
-  color: #eee;
+  /*color: #eee;*/
+  color: #aaaaaa;
+}
+.indent {
+  margin-left: 2em;
 }
 
     iframe {
@@ -318,6 +323,10 @@
       color: #aaaaaa;
     }
 
+    a {
+      color: #73FBFD;
+    }
+
 #backToTop {
   position: fixed;
   bottom: 20px;
@@ -344,7 +353,7 @@
     /* PC */
     @media (min-width: 900px) {
       .hero-text {
-        font-size: 48px;
+        font-size: 36px;
       }
       .navbar {
         gap: 20px;
@@ -387,7 +396,7 @@
         font-size: 12px;
       }
       .menu-item {
-        font-size: 28px;
+        font-size: 20px;
       }
 
       .mobile-break {
