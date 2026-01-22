@@ -129,6 +129,33 @@ document.addEventListener("DOMContentLoaded", function () {
   // 初期表示
   showSlide(0);
 
+  // ===== ギャラリー =====
+  const gallerySlides = document.querySelectorAll('.gallery-slide');
+  let galleryCurrent = 0;
+
+  function showGallerySlide(index) {
+    gallerySlides.forEach((slide, i) => {
+      slide.classList.remove('active', 'prev');
+      if (i === index) {
+        slide.classList.add('active');
+      } else if (i === (index - 1 + gallerySlides.length) % gallerySlides.length) {
+        slide.classList.add('prev');
+      }
+    });
+  }
+
+  document.getElementById('nextBtn').addEventListener('click', () => {
+    galleryCurrent = (galleryCurrent + 1) % gallerySlides.length;
+    showGallerySlide(galleryCurrent);
+  });
+
+  document.getElementById('prevBtn').addEventListener('click', () => {
+    galleryCurrent = (galleryCurrent - 1 + gallerySlides.length) % gallerySlides.length;
+    showGallerySlide(galleryCurrent);
+  });
+
+  showGallerySlide(galleryCurrent);
+
   // 5〜10秒ごとに切り替え
   setInterval(nextSlide, 7000);
 });
@@ -150,3 +177,5 @@ backToTop.addEventListener("click", () => {
     behavior: "smooth"
   });
 });
+
+
