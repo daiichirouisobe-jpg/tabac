@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TABAC</title>
 
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/tabac.css">
 </head>
 
 
@@ -24,15 +24,17 @@
   <div class="slide"><img src="images/table6.jpg" alt=""></div>
 
   <div class="hero-text">
-     "昼TABA"<br>
-     はじめました ！<br>
-     ビリヤード<br>
-     ダーツ<br>
+      <div class="hiru-taba-banner">
+        "昼TABA"<br>はじめました！
+      </div>
+      <br>
+     ビリヤード・ダーツ<br>
+     昼飲み会<br>
      レンタルスペース<br>
      (展示会、会議など)<br>
      <br>
      使い方は貴方しだい‼<br>
-     《昼間営業は予約制》<br>
+     《昼営業は予約制》<br>
   </div>
 </div>	
 
@@ -49,8 +51,9 @@
     昼：完全予約制（12:00〜18:00）<br>
     夜：BAR営業（19:00〜03:00）<br>
     <br>
-    休日：不定 <br>
-    　　　<a href="#calendar">（カレンダーでご確認ください）</a><br>
+    休日：不定　
+        <a href="#calendar" class="navbar-btn reserve-btn">営業日カレンダー</a>
+    <br>
     <br>
      　　・ビリヤード 2台<br>
      　　・ダーツ 1台<br>
@@ -62,43 +65,48 @@
 
 <section id="daytime" class="daytime">
   <h1>昼:予約制</h1>
-<div class="indent">
-    <h3>■ビリヤードレッスン</h3>
-  <div class="reserve-buttons">
-    <a href="https://lin.ee/あなたのLINEリンク" class="line-btn">LINEで予約</a>
-    <a href="mailto:yourmail@example.com?subject=TABAC予約&body=お名前：%0D%0A人数：%0D%0A希望日時：%0D%0Aご利用内容：%0D%0A" " class="mail-btn">メールで予約 </a>
-  </div>
+    <div class="indent">
+      <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+        <h3 style="margin: 0;">■ビリヤードレッスン</h3>
+        <a href="#reservation" class="navbar-btn reserve-btn">予約</a>
+      </div>
   <p>
-    完全予約制にて昼間にビリヤード教室を行います。<br>
-    ・レッスン料無料<br>
-    ・１ドリンク制<br>
-    ・ビリーヤード使用料 １人３０分４００円<br>
-    です。<br>
-    <a href="#BilliardsLesson">詳しくはこちら。</a><br>
+    完全予約制にて昼間にビリヤード教室を行っています。<br>
+    ・１人　１時間 ￥１，５００<br>
+    （延長相談可）<br>
+    <a href="#BilliardsLesson">詳しくはこちら</a><br>
     <br>
     <br>
   </p>
-    <h3>■昼飲み</h3>
-  <div class="reserve-buttons">
-    <a href="https://lin.ee/あなたのLINEリンク" class="line-btn">LINEで予約</a>
-    <a href="mailto:yourmail@example.com?subject=TABAC予約&body=お名前：%0D%0A人数：%0D%0A希望日時：%0D%0Aご利用内容：%0D%0A" " class="mail-btn">メールで予約 </a>
-  </div>
+    <!-- <h3>■昼飲み</h3> -->
+      <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+        <h3 style="margin: 0;">■昼飲み</h3>
+        <a href="#reservation" class="navbar-btn reserve-btn">予約</a>
+      </div>
   <p>
-     予約いただけますと、昼からも飲めます！<br>
-     女子会・ママ友会など・・・<br>
+     女子会・ママ友会・お誕生日会など・・・<br>
+     （お子様同伴の利用はご遠慮ください）<br>
+     ２名～６名様まで　☆完全予約での営業☆<br>
+     （ご利用は２時間制になります）<br>
+     <br>
+     　　・アルコールドリンク2杯<br>
+     　　・ソフトドリンク飲み放題<br>
+     　　　+おつまみ<br>
+     　　お1人様　¥2000(税抜き)<br>
+     <br>
+     ※ご予約は前日19時迄にお願いします<br>
   </p>
     <br>
     <br>
-    <h3>■レンタルスペース</h3>
-  <div class="reserve-buttons">
-    <a href="https://lin.ee/あなたのLINEリンク" class="line-btn">LINEで予約</a>
-    <a href="mailto:yourmail@example.com?subject=TABAC予約&body=お名前：%0D%0A人数：%0D%0A希望日時：%0D%0Aご利用内容：%0D%0A" " class="mail-btn">メールで予約 </a>
-  </div>
+    <!-- <h3>■レンタルスペース</h3> -->
+      <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+        <h3 style="margin: 0;">■レンタルスペース</h3>
+        <a href="#reservation" class="navbar-btn reserve-btn">予約</a>
+      </div>
   <p>
-パーティやイベントなど、いろいろ使ってね～！！<br>
 ・広さ：約30坪<br>
 ・ビリヤード2台　ダーツ1台<br>
-・イベント／打ち合わせ／ワークショップなど<br>
+・パーティ／イベント／打ち合わせ・・・など<br>
 <br>
 ご予約は LINE またはメールにて承っております。<br>
 ご利用内容・人数・時間を事前にご相談ください。<br>
@@ -198,10 +206,10 @@
      ・実践練習<br>
      <br>
     【料金】<br>
-     ・１ドリンク制<br>
-     ・ビリーヤード使用料<br>
-     　　　１人３０分４００円<br>
      ・レッスン料 無料<br>
+     ・１ドリンク付き<br>
+     ・１人　１時間　￥１，５００<br>
+     　（延長相談可）<br>
      <br>
      ※詳細はご予約時にご案内します。<br>
      　以下の内容をお知らせください。<br>
