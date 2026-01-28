@@ -40,7 +40,7 @@
 
     .hero-text {
       position: absolute;
-      top: 65%;
+      top: 63%;
       left: 50%;
       transform: translate(-50%, -50%);
       text-align: center;
@@ -58,7 +58,7 @@
          2px -2px 4px #444,
         -2px -2px 4px #444;
       font-family: "Yu Gothic", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
-      animation: fadeInUp 1.5s ease-out;
+      animation: fadeInUp 3s ease-out;
     }
 
   .hiru-taba-banner {
@@ -457,7 +457,7 @@
       }
       .navbar a {
         padding: 10px 20px;
-        font-size: 18px;
+        font-size: 20px;
       }
       .menu-item {
         font-size: 28px;
@@ -516,8 +516,8 @@
         padding-left: 0;
       }
       .navbar a {
-        padding: 2px 3px;
-        font-size: 12px;
+        padding: 5px 10px;
+        font-size: 16px;
       }
       .menu-item {
         font-size: 20px;
